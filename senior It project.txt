@@ -117,24 +117,24 @@ Sprint Planning Recommendation
 NutriTrack AI: Simplified Sprint Plan (MVP Focus)
 Below is an easy-to-understand sprint plan organized by what the website actually needs to work. Each sprint delivers a working, testable feature that you can show.
 
-🎯 MVP Definition (Minimum Viable Product)
+ MVP Definition (Minimum Viable Product)
 "A user can create an account, log a meal, see calories, and get an AI suggestion - all running in Docker containers."
 
 Everything else (fancy features) comes AFTER these basics work.
 
-Sprint 1: Foundation & Setup 🏗️
+Sprint 1: Foundation & Setup 
 Goal: Get the website running on your computer using Docker
 Task	What it means	Why it's necessary
 Set up Docker containers	Run 4 containers: Frontend, Backend, Database, LangFlow	Without this, nothing works
 Create user login/register	Email + password sign up	Each person needs their own account
 Design database tables	Users table, Foods table, Meal Logs table	Store what people eat
 Basic calorie formula	Mifflin-St Jeor equation (age/weight/height → calories)	Calculate daily budget
-✅ After Sprint 1 - You Can Show:
+After Sprint 1 - You Can Show:
 "Here is the website running. I can create an account and the system calculates I need 2200 calories per day."
 
 Time estimate: 2 weeks
 
-Sprint 2: Meal Logging (The Core Feature) 📝
+Sprint 2: Meal Logging (The Core Feature) 
 Goal: User can add food and see calories
 Task	What it means	Why it's necessary
 Search for food	Type "banana" → see banana options	User needs to find food
@@ -142,12 +142,12 @@ Add portion size	Select "1 medium banana" or "100 grams"	Calories depend on how 
 Save to meal log	Food appears under "Breakfast/Lunch/Dinner"	Track what was eaten today
 Show remaining calories	"You have 450 calories left today"	User knows if they can eat more
 Food database (100 items)	Pre-load chicken, rice, bread, eggs, etc.	User has something to search
-✅ After Sprint 2 - You Can Show:
+ After Sprint 2 - You Can Show:
 *"I logged breakfast (eggs + toast) and lunch (chicken + rice). The app shows I have 600 calories left for dinner."*
 
 Time estimate: 2 weeks
 
-Sprint 3: AI Assistant (LangFlow) 🤖
+Sprint 3: AI Assistant (LangFlow) 
 Goal: AI can answer food questions and give suggestions
 Task	What it means	Why it's necessary
 Connect LangFlow to website	Website talks to AI container	Enable AI features
@@ -155,24 +155,24 @@ Create Calculator Agent	Type "calories in 2 eggs" → AI returns 140 kcal	Quick 
 Create Nutrition Agent	"What should I eat post-workout?" → AI suggests chicken + rice	Helpful recommendations
 Connect to OpenAI (or free LLM)	AI actually generates text	Without this, AI says nothing
 Chat box on website	User types questions, AI answers	Interface for AI features
-✅ After Sprint 3 - You Can Show:
+ After Sprint 3 - You Can Show:
 *"I asked the AI 'What's a healthy high-protein breakfast?' and it replied 'Greek yogurt with berries - 250 calories, 20g protein!'"*
 
 Time estimate: 2 weeks
 
-Sprint 4: User Profiles & Personalization 👤
+Sprint 4: User Profiles & Personalization 
 Goal: AI remembers who you are and your goals
 Task	What it means	Why it's necessary
 Save user preferences	Store "vegetarian", "allergic to nuts", "wants to lose weight"	AI gives relevant advice
 Weekly summary chart	Bar graph showing calories eaten vs budget each day	User sees progress
 AI remembers conversation	Ask "What did I eat yesterday?" → AI knows	Natural conversation
 Profile settings page	User can update weight, goal, dietary restrictions	Keep information current
-✅ After Sprint 4 - You Can Show:
+ After Sprint 4 - You Can Show:
 "I set my goal to 'lose weight'. The AI knows this and suggested a low-calorie dinner instead of pasta."
 
 Time estimate: 1.5 weeks
 
-Sprint 5: Three Persona Features 🌟
+Sprint 5: Three Persona Features 
 Goal: Each type of user gets their special feature
 For International Student (Priya)
 Task	What it means
@@ -186,12 +186,12 @@ For Fitness Trainer (Marcus)
 Task	What it means
 Client dashboard	Trainer sees all clients in one list
 Compliance report	See which clients logged their meals
-✅ After Sprint 5 - You Can Show:
+ After Sprint 5 - You Can Show:
 *"The app works for 3 different types of people. Students scan barcodes, workers use quick-add, trainers manage clients."*
 
 Time estimate: 2 weeks
 
-Sprint 6: Polish & Deployment ✨
+Sprint 6: Polish & Deployment 
 Goal: Make it look professional and reliable
 Task	What it means	Why it's necessary
 Mobile-friendly design	Website works on phone screen	Most users will use phone
@@ -199,20 +199,20 @@ Error messages	"Password too short" instead of broken page	User understands what
 Loading spinners	Circle spins while AI thinks	User knows app didn't freeze
 Deploy online (optional)	Put on Render.com or Railway	Anyone can visit without installing
 Write README	Instructions to run with docker-compose up	Evaluators can test your project
-✅ After Sprint 6 - You Can Show:
+ After Sprint 6 - You Can Show:
 "Here is the live website. Anyone can create an account and start tracking meals in 1 minute."
 
 Time estimate: 1.5 weeks
 
-📊 Quick Summary Table
+ Quick Summary Table
 Sprint	What You Build	Can You Show It?
-1	Login + calorie calculator + Docker running	✅ "System calculates my daily budget"
-2	Search food + add to log + see remaining calories	✅ "I logged breakfast and lunch"
-3	Chat with AI about food + nutrition advice	✅ "AI answered my food question"
-4	AI remembers my goals + weekly chart	✅ "AI knows I'm vegetarian"
-5	Barcode scanner (student) + Quick-add (worker) + Client list (trainer)	✅ "Three different user types work"
-6	Mobile design + error handling + online deployment	✅ "Website works on phone"
-🚨 What You CAN Skip (For Now)
+1	Login + calorie calculator + Docker running "System calculates my daily budget"
+2	Search food + add to log + see remaining calories "I logged breakfast and lunch"
+3	Chat with AI about food + nutrition advice "AI answered my food question"
+4	AI remembers my goals + weekly chart	"AI knows I'm vegetarian"
+5	Barcode scanner (student) + Quick-add (worker) + Client list (trainer) "Three different user types work"
+6	Mobile design + error handling + online deployment	"Website works on phone"
+ What You CAN Skip (For Now)
 These are NOT necessary for MVP:
 
 Feature	Why skip
@@ -222,7 +222,7 @@ Social media sharing	Nobody uses this.
 Complex charts	Simple bar graph is enough.
 Mobile app (iOS/Android)	Website that works on phone = good enough.
 Barcode database for 10,000 items	500 items + user ability to add custom food = fine.
-🎯 The Easiest Path to a Working Project
+ The Easiest Path to a Working Project
 text
 Sprint 1 → Login + Calorie Calculator
     ↓
@@ -232,13 +232,13 @@ Sprint 3 → AI Chat Box
     ↓
 Sprint 4 → AI Remembers You
     ↓
-✅ DONE! You have a working MyFitnessPal clone with AI.
+ DONE! You have a working MyFitnessPal clone with AI.
 Sprints 5 and 6 are "nice to have" for extra credit.
 
-📝 Sample Daily Standup (What you say each day)
+ Sample Daily Standup (What you say each day)
 "Yesterday I finished the food search bar. Today I'm working on saving meals to the database. No blockers."
 
-🐳 Docker Containers (Simplified)
+ Docker Containers (Simplified)
 Container	What it does	Do you touch it?
 Frontend	The website you see	Yes - write HTML/CSS/JS
 Backend	Does calculations, talks to database	Yes - write Python/Node
