@@ -1,0 +1,254 @@
+Persona 1: INTERNATIONAL STUDENT
+Profile
+Name: Priya (23 years old)
+
+Location: Studying abroad in Germany from India
+
+Challenges:
+
+Unfamiliar with local food names/nutrition labels
+
+Limited budget (€50-70/week for food)
+
+No cooking equipment, eats at university canteen
+
+Gained 5kg in first semester (stress + unfamiliar food)
+
+Goals: Maintain healthy weight, understand German food nutrition, save money by meal planning
+
+Tech Comfort: High (uses phone for everything)
+
+Epic 1: Cultural Food Adaptation
+As an international student, I want to understand nutritional values of unfamiliar local foods so I can make informed choices.
+
+User Story	Acceptance Criteria	Priority
+As Priya, I want to put information about german food and it will showcase food detail
+As Priya, I want to compare two unfamiliar meals 
+As Priya, I want to see alternative Indian food options that match similar nutrition profile	
+Epic 2: Budget-Conscious Meal Planning
+As a student, I want meal suggestions that fit my limited budget and cooking constraints.
+
+User Story	Acceptance Criteria	Priority
+As Priya, I want to tell the AI "I have €10 for 3 days of food
+As Priya, I want to filter recipes by "no oven" and "no refrigerator"
+As Priya, I want to log canteen meals by uploading a photo of the cafeteria menu	AI vision (GPT-4V via LangFlow) extracts text and estimates calories	P2
+Epic 3: Stress & Weight Management
+As a stressed student, I want gentle encouragement rather than strict diet rules.
+
+Persona 2: FITNESS TRAINER
+Profile
+Name: Marcus (34 years old)
+
+Occupation: Certified personal trainer, works with 15+ clients
+
+Challenges:
+
+Manually tracking client meal logs takes 10+ hours/week
+
+Clients submit inconsistent data ("I ate some chicken" vs "150g grilled breast")
+
+Needs to adjust macros for cutting/bulking phases
+
+Goals: Automate client check-ins, get AI-powered suggestions, save time
+
+Tech Comfort: Medium (uses Excel, basic apps)
+
+Epic 4: Client Management & Bulk Tracking
+As a fitness trainer, I want to manage multiple clients' nutrition data from one dashboard.
+
+User Story	Acceptance Criteria	Priority
+As Marcus, I want to create client profiles with independent goals
+As Marcus, I want to receive a weekly "Client Compliance Report" showing who logged >80% of meals
+As Marcus, I want to leave voice notes (or text) on a client's meal that the AI converts to feedback
+Epic 5: Macro Cycle Management
+As a trainer, I want to programmatically adjust client macros for cutting/bulking phases.
+
+User Story	Acceptance Criteria	Priority
+As Marcus, I want to apply a "Cut Phase" template that sets carbs to 40%, protein 40%, fat 20% for all selected clients	Bulk update endpoint → recalculates TDEE for each client based on new ratios	P0
+As Marcus, I want the AI to suggest "Client Sarah is consistently under protein by 20g
+Epic 6: AI-Assisted Client Communication
+As a busy trainer, I want AI to draft personalized feedback for each client.
+Persona 3: OFFICE WORKER
+Profile
+Name: David (41 years old)
+
+Occupation: Corporate accountant, 9-5 desk job
+
+Challenges:
+
+Sedentary lifestyle (steps <3000/day)
+
+Stress eating at desk, frequent team lunches (unplanned calories)
+
+Tries to cook but tired after work → defaults to takeout
+
+Goals: Lose 8kg without feeling deprived, build sustainable habits
+
+Tech Comfort: Low (uses basic apps, wants simplicity)
+
+Epic 7: Simplified & Speed-Optimized Logging
+As a busy office worker, I want to log meals in under 10 seconds so I don't abandon the app.
+
+User Story	Acceptance Criteria	Priority
+As David, I want to save frequent meals as "Desk Lunch:
+As David, I want to use quick-add
+ Habit Formation & Gentle Nudges
+As someone who hates diets, I want encouragement that doesn't feel judgmental.
+
+User Story	Acceptance Criteria	Priority
+As David, when I log a donut at 10 AM, the AI says "Enjoy your treat! A light walk at lunch will balance this perfectly"	LangFlow detects "unhealthy" food → adds positive, action-oriented suggestion	P0
+As David, I want a weekly "You vs Your Past Self" chart showing I'm doing better than last month (not comparing to others)	Dashboard visualizes rolling 30-day average vs current week	P1
+As David, I want the AI to notice "You've eaten out 5 days this week.
+
+User Story	Acceptance Criteria	Priority
+As David, after logging a 700+ calorie meal, I want a notification
+As David, I want to connect my smartwatch (Apple Health/Google Fit) so steps auto-sync to adjust calorie budget	OAuth integration + webhook receives step data → recalculates remaining calories	P0
+As David, I want a "Desk Stretch Break" reminder every 60 minutes if I've been inactive	Redis tracks last activity timestamp
+As any user, I want the AI to remember my past meal preferences within the same conversation
+As any user, when I ask a calculation question ("calories in 2 eggs"), I want instant answer without AI hallucination	Conditional router sends calculation queries to Tool Agent (not LLM)	P0
+As any user, I want the AI to recognize and respond in my preferred language (English, German, Hindi)	LangFlow prompt template includes {language} variable from user profile	P1
+Epic 11: Docker Deployment (Developer/Evaluator)
+User Story	Acceptance Criteria	Priority
+As a developer, I want to run docker-compose up -d and have all 6 services (frontend, backend, postgres, langflow, chroma, redis) start	Docker Compose validated with health checks for each service	P0
+As a developer, I want to persist user data across container restarts (database volumes)	Docker volumes mapped to pg_data, langflow_data, chroma_data	P0
+As an evaluator, I want to see separate dev and prod compose files with resource limits in prod	docker-compose.dev.yml (hot-reload) + docker-compose.prod.yml (cpus:1, memory:2g)	P1
+Sprint Planning Recommendation 
+
+NutriTrack AI: Simplified Sprint Plan (MVP Focus)
+Below is an easy-to-understand sprint plan organized by what the website actually needs to work. Each sprint delivers a working, testable feature that you can show.
+
+ MVP Definition (Minimum Viable Product)
+"A user can create an account, log a meal, see calories, and get an AI suggestion - all running in Docker containers."
+
+Everything else (fancy features) comes AFTER these basics work.
+
+Sprint 1: Foundation & Setup 
+Goal: Get the website running on your computer using Docker
+Task	What it means	Why it's necessary
+Set up Docker containers	Run 4 containers: Frontend, Backend, Database, LangFlow	Without this, nothing works
+Create user login/register	Email + password sign up	Each person needs their own account
+Design database tables	Users table, Foods table, Meal Logs table	Store what people eat
+Basic calorie formula	Mifflin-St Jeor equation (age/weight/height → calories)	Calculate daily budget
+After Sprint 1 - You Can Show:
+"Here is the website running. I can create an account and the system calculates I need 2200 calories per day."
+
+Time estimate: 2 weeks
+
+Sprint 2: Meal Logging (The Core Feature) 
+Goal: User can add food and see calories
+Task	What it means	Why it's necessary
+Search for food	Type "banana" → see banana options	User needs to find food
+Add portion size	Select "1 medium banana" or "100 grams"	Calories depend on how much
+Save to meal log	Food appears under "Breakfast/Lunch/Dinner"	Track what was eaten today
+Show remaining calories	"You have 450 calories left today"	User knows if they can eat more
+Food database (100 items)	Pre-load chicken, rice, bread, eggs, etc.	User has something to search
+ After Sprint 2 - You Can Show:
+*"I logged breakfast (eggs + toast) and lunch (chicken + rice). The app shows I have 600 calories left for dinner."*
+
+Time estimate: 2 weeks
+
+Sprint 3: AI Assistant (LangFlow) 
+Goal: AI can answer food questions and give suggestions
+Task	What it means	Why it's necessary
+Connect LangFlow to website	Website talks to AI container	Enable AI features
+Create Calculator Agent	Type "calories in 2 eggs" → AI returns 140 kcal	Quick answers without searching database
+Create Nutrition Agent	"What should I eat post-workout?" → AI suggests chicken + rice	Helpful recommendations
+Connect to OpenAI (or free LLM)	AI actually generates text	Without this, AI says nothing
+Chat box on website	User types questions, AI answers	Interface for AI features
+ After Sprint 3 - You Can Show:
+*"I asked the AI 'What's a healthy high-protein breakfast?' and it replied 'Greek yogurt with berries - 250 calories, 20g protein!'"*
+
+Time estimate: 2 weeks
+
+Sprint 4: User Profiles & Personalization 
+Goal: AI remembers who you are and your goals
+Task	What it means	Why it's necessary
+Save user preferences	Store "vegetarian", "allergic to nuts", "wants to lose weight"	AI gives relevant advice
+Weekly summary chart	Bar graph showing calories eaten vs budget each day	User sees progress
+AI remembers conversation	Ask "What did I eat yesterday?" → AI knows	Natural conversation
+Profile settings page	User can update weight, goal, dietary restrictions	Keep information current
+ After Sprint 4 - You Can Show:
+"I set my goal to 'lose weight'. The AI knows this and suggested a low-calorie dinner instead of pasta."
+
+Time estimate: 1.5 weeks
+
+Sprint 5: Three Persona Features 
+Goal: Each type of user gets their special feature
+For International Student (Priya)
+Task	What it means
+Scan barcode	Use phone camera to scan German bread barcode → shows nutrition
+Type unfamiliar food	Write "currywurst" → AI tells calories
+For Office Worker (David)
+Task	What it means
+Quick-add	Type "+450" to add 450 calories in 2 seconds
+One-tap frequent meals	Save "My Desk Lunch" → tap once to log
+For Fitness Trainer (Marcus)
+Task	What it means
+Client dashboard	Trainer sees all clients in one list
+Compliance report	See which clients logged their meals
+ After Sprint 5 - You Can Show:
+*"The app works for 3 different types of people. Students scan barcodes, workers use quick-add, trainers manage clients."*
+
+Time estimate: 2 weeks
+
+Sprint 6: Polish & Deployment 
+Goal: Make it look professional and reliable
+Task	What it means	Why it's necessary
+Mobile-friendly design	Website works on phone screen	Most users will use phone
+Error messages	"Password too short" instead of broken page	User understands what went wrong
+Loading spinners	Circle spins while AI thinks	User knows app didn't freeze
+Deploy online (optional)	Put on Render.com or Railway	Anyone can visit without installing
+Write README	Instructions to run with docker-compose up	Evaluators can test your project
+ After Sprint 6 - You Can Show:
+"Here is the live website. Anyone can create an account and start tracking meals in 1 minute."
+
+Time estimate: 1.5 weeks
+
+ Quick Summary Table
+Sprint	What You Build	Can You Show It?
+1	Login + calorie calculator + Docker running "System calculates my daily budget"
+2	Search food + add to log + see remaining calories "I logged breakfast and lunch"
+3	Chat with AI about food + nutrition advice "AI answered my food question"
+4	AI remembers my goals + weekly chart	"AI knows I'm vegetarian"
+5	Barcode scanner (student) + Quick-add (worker) + Client list (trainer) "Three different user types work"
+6	Mobile design + error handling + online deployment	"Website works on phone"
+ What You CAN Skip (For Now)
+These are NOT necessary for MVP:
+
+Feature	Why skip
+Recipe generation	Hard to do well. Just give food suggestions first.
+Voice input	Nice but not essential. Text chat is fine.
+Social media sharing	Nobody uses this.
+Complex charts	Simple bar graph is enough.
+Mobile app (iOS/Android)	Website that works on phone = good enough.
+Barcode database for 10,000 items	500 items + user ability to add custom food = fine.
+ The Easiest Path to a Working Project
+text
+Sprint 1 → Login + Calorie Calculator
+    ↓
+Sprint 2 → Log Meals + See Calories
+    ↓
+Sprint 3 → AI Chat Box
+    ↓
+Sprint 4 → AI Remembers You
+    ↓
+ DONE! You have a working MyFitnessPal clone with AI.
+Sprints 5 and 6 are "nice to have" for extra credit.
+
+ Sample Daily Standup (What you say each day)
+"Yesterday I finished the food search bar. Today I'm working on saving meals to the database. No blockers."
+
+ Docker Containers (Simplified)
+Container	What it does	Do you touch it?
+Frontend	The website you see	Yes - write HTML/CSS/JS
+Backend	Does calculations, talks to database	Yes - write Python/Node
+PostgreSQL	Stores users, foods, meals	No - Docker sets it up
+LangFlow	Runs the AI	Yes - design AI flow visually
+Redis	Remembers recent searches (faster)	No - Docker sets it up
+To start everything: docker-compose up -d
+To stop everything: docker-compose down
+To see if it's working: docker ps (shows 5 containers running)
+
+Would you like me to write actual code snippets for any of these sprints (e.g., login system, food search, or LangFlow AI connection)?
+
+
