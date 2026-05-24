@@ -1,4 +1,4 @@
-# Senior-It-project
+# StudyMind-AI Service #
 NutriTrack is a senior-level IT project that replicates the core functionality of MyFitnessPal, focusing on health promotion through precise nutritional tracking. Unlike simple step counters, this application solves the real-world problem of "diet fog"—the difficulty users face in understanding exactly what they eat and how it impacts their body composition. The system acts as a digital dietitian, converting abstract food items into actionable caloric data.
 OBJECTIVES 
 Calorie & Macronutrient Calculation: Build a dynamic calculator that computes daily caloric needs (TDEE) and macronutrient splits based on user metrics and health goals.
