@@ -1,1 +1,8 @@
-
+26-05-2026
+Downloaded and configured the Zammad Docker Compose setup.
+Set up the local development environment using Visual Studio Code.
+Ran Docker Compose services successfully for the Zammad application.
+Managed container startup and verified service execution using Docker.
+Worked with Docker-based deployment and environment configuration.
+Tested local access and basic functionality of the Zammad helpdesk system.
+Troubleshot startup/configuration issues during Docker deployment.
