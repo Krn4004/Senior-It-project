@@ -6,7 +6,7 @@ Food Database Management: Create a scalable searchable database of food items wi
 Meal Logging & Diary: Implement a daily food diary with real-time remaining calorie budget tracking and historical data visualization.
 
 Team Members 
-Baljeet Singh , Karan Sharma , Rohit 
+Baljeet Singh , Karan Sharma , Arjun 
 Project Discription 
 Food  Track 
 Obejective 
